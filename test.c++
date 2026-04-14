@@ -13,12 +13,29 @@ int main() {
     std::string token;
     
     int result = 0;
-    char lastOp = '+'; // 最初は 0 + (最初の数) と考える
-    
-    for (int i = 0; i < input.length(); ++i) {
-        std::cout << "r" << std::endl;
-    }
+    int commandcount = 0;
+    char lastOp = '+';
 
+    std::vector<std::string> vec(0);
+
+    for (int i = 0; i < input.length(); ++i) {
+        if(input[i] == '+' || input[i] == '-') {
+            std::cout << "演算子: " << input[i] << std::endl;
+            vec.push_back(std::string(1, input[i]));
+            commandcount+=2;
+        }else{
+            std::cout << vec.size() << ":" << input[i] << std::endl;
+            if(vec.size() == commandcount){
+                vec.push_back("");
+            }
+            vec[commandcount] += input[i];
+            
+        }
+    }
+    for(int i = 0; i < vec.size(); ++i){
+        std::cout <<  vec[i] << "    " ;
+    }
+    /*
     while (ss >> token) {
         if (token == "+" || token == "-") {
             lastOp = token[0];
@@ -29,7 +46,7 @@ int main() {
             else if (lastOp == '-') result -= num;
         }
     }
-
-    std::cout << "計算結果: " << result << std::endl;
+    */
+    //std::cout << "計算結果: " << result << std::endl;
     return 0;
 }
