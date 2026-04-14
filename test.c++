@@ -16,24 +16,24 @@ int main() {
     int commandcount = 0;
     char lastOp = '+';
 
-    std::vector<std::string> vec(0);
+    std::vector<std::string> inputlist(0);
 
     for (int i = 0; i < input.length(); ++i) {
         if(input[i] == '+' || input[i] == '-') {
             std::cout << "演算子: " << input[i] << std::endl;
-            vec.push_back(std::string(1, input[i]));
+            inputlist.push_back(std::string(1, input[i]));
             commandcount+=2;
         }else{
-            std::cout << vec.size() << ":" << input[i] << std::endl;
-            if(vec.size() == commandcount){
-                vec.push_back("");
+            std::cout << inputlist.size() << ":" << input[i] << std::endl;
+            if(inputlist.size() == commandcount){
+                inputlist.push_back("");
             }
-            vec[commandcount] += input[i];
+            inputlist[commandcount] += input[i];
             
         }
     }
-    for(int i = 0; i < vec.size(); ++i){
-        std::cout <<  vec[i] << "    " ;
+    for(int i = 0; i < inputlist.size(); ++i){
+        std::cout <<  inputlist[i] << "    " ;
     }
     /*
     while (ss >> token) {
