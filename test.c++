@@ -21,7 +21,7 @@ int main() {
     vector<string> inputlist(0);
 
     for (int i = 0; i < input.length(); ++i) {
-        if(input[i] == '+' || input[i] == '-') {
+        if(input[i] == '+' || input[i] == '-' || input[i] == '*' || input[i] == '/' || input[i] == ' ' ) {
             cout << "演算子: " << input[i] << endl;
             inputlist.push_back(string(1, input[i]));
             commandcount+=2;
@@ -34,7 +34,7 @@ int main() {
             for (int j = i+1; j < input.length(); ++j) {
                 
                 
-                if(input[j] == '+' || input[j] == '-') {
+                if(input[j] == '+' || input[j] == '-' || input[j] == '*' || input[j] == '/' || input[j] == ' ' ) {
                     cout << "break"<< endl;
                     i = j-1;
                     break;
