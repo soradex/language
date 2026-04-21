@@ -19,7 +19,8 @@ int main() {
     char lastOp = '+';
 
     vector<string> inputlist(0);
-
+    
+    //　字句解析してリストに区切って入れる
     for (int i = 0; i < input.length(); ++i) {
         if(input[i] == '+' || input[i] == '-' || input[i] == '*' || input[i] == '/') {
             cout << "演算子: " << input[i] << endl;
@@ -54,23 +55,14 @@ int main() {
             
         }
     }
+    
+    //確認用 終わったら消す
     cout << inputlist[0] << endl;
     for(int i = 0; i < inputlist.size(); ++i){
         cout <<  inputlist[i] << "    " ;
     }
-    /*
-    while (ss >> token) {
-        if (token == "+" || token == "-") {
-            lastOp = token[0];
-        } else {
-            // 文字列を数値に変換
-            int num = std::stoi(token);
-            if (lastOp == '+') result += num;
-            else if (lastOp == '-') result -= num;
-        }
-    }
-    */
-    //std::cout << "計算結果: " << result << std::endl;
+    
+    //今の所の計算方法(ここから変えていく)
     for (int i = 0; i < inputlist.size(); ++i) {
         std::string t = inputlist[i];
         if (t == "+") {
