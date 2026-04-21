@@ -31,11 +31,16 @@ int main() {
                 inputlist.push_back("");
             }
             inputlist[commandcount] += input[i];
-            for (int j = i+1; j < input.length(); ++j) {
-                
+            for (int j = i+1; j < input.length()+100; ++j) {
+                cout << input.length()<< endl;
+                if(input.length() ==j){
+                    cout << "break"<< j << endl;
+                    i = j-1;
+                    break;
+                }
                 
                 if(input[j] == '+' || input[j] == '-' || input[j] == '*' || input[j] == '/' || input[j] == ' ' ) {
-                    cout << "break"<< endl;
+                    cout << "break"<< j << endl;
                     i = j-1;
                     break;
                 }else {
@@ -47,6 +52,7 @@ int main() {
             
         }
     }
+    cout << inputlist[0] << endl;
     for(int i = 0; i < inputlist.size(); ++i){
         cout <<  inputlist[i] << "    " ;
     }
@@ -63,5 +69,19 @@ int main() {
     }
     */
     //std::cout << "計算結果: " << result << std::endl;
+    for (int i = 0; i < inputlist.size(); ++i) {
+        std::string t = inputlist[i];
+        if (t == "+") {
+            lastOp = '+';
+        } else if (t == "-") {
+            lastOp = '-';
+        } else if (t != "") { // 空白対策
+            int num = std::stoi(t);
+            if (lastOp == '+') result += num;
+            else if (lastOp == '-') result -= num;
+        }
+    }
+    std::cout << "計算結果: " << result << std::endl;
+
     return 0;
 }
