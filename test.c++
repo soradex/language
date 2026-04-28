@@ -4,6 +4,44 @@
 #include <sstream>
 #include <cctype>
 
+class Parser {
+    private:
+    
+        std::vector<std::string> tokens;
+        int pos = 0;
+    public:
+        Parser(std::vector<std::string> t) : tokens(t), pos(0) {}
+        int parseFactor() {
+            using namespace std;
+            int val = stoi(tokens[pos]);
+            pos++; // 次のトークンへ
+            return val;
+        }
+        int parseTerm() {
+            using namespace std;
+            int left = parseFactor(); // まず左側の数値を取得
+            while (pos < tokens.size() && (tokens[pos] == "*" || tokens[pos] == "/")) {
+                string op = tokens[pos++];
+                int right = parseFactor(); // 右側の数値を取得
+                if (op == "*") left *= right;
+                else left /= right;
+            }
+            return left;
+        }
+        int parseExpression() {
+            using namespace std;
+            int left = parseTerm(); // まず左側の数値を取得
+            while (pos < tokens.size() && (tokens[pos] == "+" || tokens[pos] == "-")) {
+                string op = tokens[pos++];
+                int right = parseTerm(); // 右側の数値を取得
+                if (op == "+") left += right;
+                else left -= right;
+            }
+            return left;
+        }
+
+};
+
 int main() {
     using namespace std;
     string input;
