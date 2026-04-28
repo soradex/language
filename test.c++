@@ -2,8 +2,55 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <cctype>
 
 int main() {
+    using namespace std;
+    string input;
+    cout << "数式を入力してください: ";
+    getline(cin, input);
+    vector<string> tokens;
+    int pos = 0;
+    while (pos < input.length())
+    {
+        cout << pos << endl;
+        //空白は飛ばす
+        if(isspace(input[pos])) {
+            pos++;
+            continue;
+        }
+        // 2. 数字の塊を読み取る
+        if (isdigit(input[pos])) {
+            string num = "";
+            while (pos < input.length() && isdigit(input[pos])) {
+                num += input[pos];
+                pos++;
+            }
+            tokens.push_back(num);
+        }
+        // 3. 記号を読み取る
+        else if (input[pos] == '+' || input[pos] == '-' || 
+                 input[pos] == '*' || input[pos] == '/') {
+            tokens.push_back(string(1, input[pos]));
+            pos++;
+        }
+        // 4. 未知の文字（エラー処理）
+        else {
+            cerr << "不明な文字です: " << input[pos] << endl;
+            pos++;
+        }
+    }
+    for (int i = 0; i < tokens.size(); ++i) {
+            string t = tokens[i];
+            cout << "[" << t << "] ";
+        }
+        cout << endl;
+        return 0;
+    
+    
+
+
+    /*
     using namespace std;
 
     string input;
@@ -19,7 +66,7 @@ int main() {
     char lastOp = '+';
 
     vector<string> inputlist(0);
-    
+
     //　字句解析してリストに区切って入れる
     for (int i = 0; i < input.length(); ++i) {
         if(input[i] == '+' || input[i] == '-' || input[i] == '*' || input[i] == '/') {
@@ -78,4 +125,5 @@ int main() {
     std::cout << "計算結果: " << result << std::endl;
 
     return 0;
+    */
 }
