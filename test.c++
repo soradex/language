@@ -8,7 +8,7 @@ class Parser {
     private:
     
         std::vector<std::string> tokens;
-        int pos = 0;
+        int pos;
     public:
         Parser(std::vector<std::string> t) : tokens(t), pos(0) {}
         int parseFactor() {
